@@ -16,7 +16,7 @@ import dxToneList from '@/config/dxTone'
 
 const clickPianoKey = (e, { url }) => {
     const dxAudio = new Audio(url)
-    console.log(dxAudio);
+    dxAudio.volume = 0.3
     dxAudio.play()
 }
 
