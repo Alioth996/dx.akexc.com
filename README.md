@@ -54,4 +54,7 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [Unocss](https://uno.antfu.me/) - [antfu](https://antfu.me/) 大佬的 [原子化 css](https://css-tricks.com/lets-define-exactly-atomic-css/)成果
 
-[AutoPiano](https://www.autopiano.cn/) - web piano 最佳实践.参考于该项目
+[AutoPiano](https://www.autopiano.cn/) - web piano 最佳实践
+
+[shuimo-ui](https://github.com/janghood/shuimo-ui) - 国风UI组件库
++ 受该开源项目启发, 逐渐 get  ``洞箫在线`` 的 idea
