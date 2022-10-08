@@ -1,7 +1,8 @@
 <template>
-    <div id="dx-panel " flex="~ row " justify-start>
-        <div v-for="dxTone in dxToneList" :key="dxTone.keyCode" :data-keyCode="dxTone.keyCode" :data-name="dxTone.name"
-            class="dxTone-key" @click.stop="clickControlDX(dxTone)" ref="toneBtn">
+    <div id="dx-panel" flex="~ row " justify-start>
+        <div v-for="(dxTone,index) in dxToneList" :key="dxTone.keyCode" :data-keyCode="dxTone.keyCode"
+            :data-name="dxTone.name" class="dxTone-key" :class="activerIndex == index ?'active':''"
+            @click.stop=" clickControlDX(dxTone,index)" ref="toneBtn">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
                 <div class="notename">{{dxTone.name}}</div>
@@ -12,30 +13,37 @@
 
 <script setup>
 import dxToneList from '@/config/dxTone'
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
-const dxPanelRef = ref()
+let activerIndex = ref()
 
-
-const clickControlDX = ({ url }) => {
-
-    const dxToneBtnList = document.querySelector('#dx-panel')
-
-    console.log(dxToneBtnList);
+const clickControlDX = ({ url }, index) => {
+    // console.log(index);
+    activerIndex.value = index
+    console.log(activerIndex.value);
     // 目前来说构造函数时最优解,后期可能会使用 tone.js
     const dxAudio = new Audio(url)
     dxAudio.addEventListener("canplaythrough", event => {
         /* 音频可以播放；如果权限允许则播放 */
-        dxAudio.volume = 0.3
+        dxAudio.volume = 0.5
         dxAudio.play();
     });
 
 }
 
 const keypressControlDX = () => {
+    const dxToneBtnList = [...document.querySelector('#dx-panel').children]
+
     // keypress 按住不放会一直触发事件, keyup需要松开键盘才触发. 
     // 2. 可能考虑使用键盘驱动点击事件模拟效果
     document.addEventListener('keyup', e => {
+        const currentBtn = dxToneBtnList.filter(x => x.getAttribute('data-keycode') == e.keyCode)[0]
+
+        if (!currentBtn) return
+        currentBtn.click()
+
+
+        return
         // e.keyCode 已经弃用
         const currentKey = e.key
         const tone = dxToneList.find(x => x.key == currentKey.toUpperCase())
@@ -69,11 +77,19 @@ onMounted(() => keypressControlDX()
     box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff, inset 1px 0 0 #fff, inset -1px 0 0 #fff, 0 4px 3px rgb(0 0 0 / 70%);
     border-radius: 0 0 5px 5px;
     height: 250px;
+    cursor: pointer;
 
     &:hover {
-        cursor: pointer;
         box-shadow: inset 0 0 5px 0 #8c4356;
+
     }
+
+
+}
+
+.active {
+    box-shadow: inset 0 0 5px 0 #000;
+
 }
 
 .keytip {
