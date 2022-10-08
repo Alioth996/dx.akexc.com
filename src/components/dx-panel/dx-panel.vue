@@ -1,7 +1,7 @@
 <template>
     <div id="dx-panel " flex="~ row " justify-start>
         <div v-for="dxTone in dxToneList" :key="dxTone.keyCode" :data-keyCode="dxTone.keyCode" :data-name="dxTone.name"
-            class="dxTone-key" @click.stop="clickPianoKey($event, dxTone)">
+            class="dxTone-key" @click.stop="clickControlDX(dxTone)">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
                 <div class="notename">{{dxTone.name}}</div>
@@ -12,13 +12,45 @@
 
 <script setup>
 import dxToneList from '@/config/dxTone'
+import { onMounted } from 'vue';
 
 
-const clickPianoKey = (e, { url }) => {
+const clickControlDX = ({ url }) => {
+    // 目前来说构造函数时最优解,后期可能会使用 tone.js
     const dxAudio = new Audio(url)
-    dxAudio.volume = 0.3
-    dxAudio.play()
+    dxAudio.addEventListener("canplaythrough", event => {
+        /* 音频可以播放；如果权限允许则播放 */
+        dxAudio.volume = 0.3
+        dxAudio.play();
+    });
+
 }
+
+// const keypressControlDX = (docEle) => {
+//     docEle.addEventListener('keypress', e => {
+//         const keypressCode = e.key
+//         const toneUrl = dxToneList.find(x => x.keyCode == keypressCode)
+//         console.log(toneUrl);
+//     })
+
+// }
+
+onMounted(() =>
+    document.addEventListener('keypress', e => {
+        // e.keyCode 已经弃用
+        const currentKey = e.key
+        console.log(currentKey);
+        const tone = dxToneList.find(x => x.key == currentKey.toUpperCase())
+        console.log(tone);
+        if (!tone) {
+            console.error("当前按键无音源..")
+            return
+        }
+
+
+        // console.log(url);
+    })
+)
 
 </script>
 
