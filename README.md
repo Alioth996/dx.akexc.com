@@ -1,6 +1,8 @@
 **[dx.akexc.com](https://dx.akexc.com)**
 
-洞箫在线演奏网站,欢迎加入民乐大家庭~~
+中国民族乐器-[洞箫](https://baike.baidu.com/item/%E6%B4%9E%E7%AE%AB/512219)
+
+在线演奏网站,欢迎加入民乐大家庭~~
 
 <br>
 
@@ -20,15 +22,17 @@
 
 [√] 鼠标演奏
 
+[×] 录制洞箫音源并导入
+
 [×] 键盘演奏
 
 [×] 移动端
 
-[×] 曲谱解析
-
 [×] 自动演奏
 
 [×] CI / CD
+
+[×] 公告
 
 ---
 
@@ -38,12 +42,7 @@
 
 ---
 
-### 素材录制
 
-- 由本人亲自演奏并录制所用到的洞箫音阶 `低音5-高音6`
-- 录制几首 [仙剑奇侠传](http://www.unistar.cn/) 示例曲子
-
----
 
 ### 鸣谢
 
@@ -55,4 +54,7 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [Unocss](https://uno.antfu.me/) - [antfu](https://antfu.me/) 大佬的 [原子化 css](https://css-tricks.com/lets-define-exactly-atomic-css/)成果
 
-[AutoPiano](https://www.autopiano.cn/) - web piano 最佳实践.参考于该项目
+[AutoPiano](https://www.autopiano.cn/) - web piano 最佳实践
+
+[shuimo-ui](https://github.com/janghood/shuimo-ui) - 国风UI组件库
++ 受该开源项目启发, 逐渐 get  ``洞箫在线`` 的 idea
