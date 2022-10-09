@@ -24,7 +24,7 @@
 
 [×] 录制洞箫音源并导入
 
-[×] 键盘演奏
+[√] 键盘演奏
 
 [×] 移动端
 
@@ -58,3 +58,5 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [shuimo-ui](https://github.com/janghood/shuimo-ui) - 国风UI组件库
 + 受该开源项目启发, 逐渐 get  ``洞箫在线`` 的 idea
+
+[...]()
