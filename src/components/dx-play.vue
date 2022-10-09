@@ -13,6 +13,5 @@ import DxPanel from './dx-panel/dx-panel.vue';</script>
 #dx-play {
     flex: 1;
     width: 70ch;
-    border: 1px solid #ccc;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <main id="dx-conatiner" flex="~ col none" justify-center items-center>
+  <main id="dx-conatiner" flex="~ col none" h-full justify-center items-center>
     <DxHeader />
     <DxPlay />
     <DxFooter />
