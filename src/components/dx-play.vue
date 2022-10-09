@@ -1,6 +1,5 @@
 <template>
     <div id="dx-play" mt-10>
-        <DxNotice />
         <DxPanel />
     </div>
 </template>
