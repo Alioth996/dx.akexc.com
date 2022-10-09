@@ -1,5 +1,5 @@
 <template>
-    <footer text-center py-6 leading-7 bottom-0>
+    <footer text-center py-6 leading-7>
         <p>
             Author
             <a href="https://github.com/akex4396" target="_blank" class="text-link">akex4396</a>
