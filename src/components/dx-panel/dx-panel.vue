@@ -1,7 +1,7 @@
 <template>
     <div id="dx-panel" flex="~ row " justify-start>
-        <div v-for="(dxTone,index) in dxToneList" :key="dxTone.keyCode" :data-keyCode="dxTone.keyCode"
-            :data-name="dxTone.name" class="dxTone-key" :class="activerIndex == index ?'active':''"
+        <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-keyCode="dxTone.keyCode"
+            :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
             @click.stop=" clickControlDX(dxTone,index)" ref="toneBtn">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
@@ -13,45 +13,90 @@
 
 <script setup>
 import dxToneList from '@/config/dxTone'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 
+
+// 样式切换index
 let activerIndex = ref()
 
+let timerOut = null
+
+// 鼠标点击演奏
 const clickControlDX = ({ url }, index) => {
-    // console.log(index);
     activerIndex.value = index
-    console.log(activerIndex.value);
     // 目前来说构造函数时最优解,后期可能会使用 tone.js
     const dxAudio = new Audio(url)
-    dxAudio.addEventListener("canplaythrough", event => {
+
+    dxAudio.addEventListener("canplay", event => {
         /* 音频可以播放；如果权限允许则播放 */
         dxAudio.volume = 0.5
+
+        /**
+         * @desc preload 设置预加载
+         * 
+         * @attr none: 表示不应该预加载视频。
+         * @attr metadata: 表示仅预先获取视频的元数据（例如长度）
+         * @attr auto: 表示可以下载整个视频文件，即使用户不希望使用它。
+         * 空字符串: 和值为 auto 一致。每个浏览器的默认值都不相同，即使规范建议设置为 metadata。
+         * 
+         * @link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video#attr-preload
+         */
+        dxAudio.preload = 'none'
         dxAudio.play();
     });
 
+    dxAudio.addEventListener('play', e => {
+        console.log("洞箫吹奏中...", dxAudio.played);
+    })
+
+    dxAudio.addEventListener('ended', (e) => {
+        console.log("洞箫吹奏结束:", dxAudio.ended);
+    })
+
+
+    timerOut = setTimeout(() => {
+        activerIndex.value = null
+        timerOut = null
+        clearTimeout(timerOut)
+    }, 200)
+}
+
+
+// 音名转换为十二平均律
+const filterToneToChinese = (toneName) => {
+    if (toneName.startsWith('-')) {
+        return toneName = toneName.replace('-', '低音')
+    } else if (toneName.endsWith('^')) {
+        return toneName = `高音${toneName.replace('^', '')}`
+    }
+    return `中音${toneName}`
 }
 
 const keypressControlDX = () => {
     const dxToneBtnList = [...document.querySelector('#dx-panel').children]
 
-    // keypress 按住不放会一直触发事件, keyup需要松开键盘才触发. 
-    // 2. 可能考虑使用键盘驱动点击事件模拟效果
+    // 1. keypress 按住不放会一直触发事件, keyup需要松开键盘才触发. 
+    // 2.考虑使用键盘驱动点击事件模拟效果
     document.addEventListener('keyup', e => {
         const currentBtn = dxToneBtnList.filter(x => x.getAttribute('data-keycode') == e.keyCode)[0]
 
         if (!currentBtn) return
         currentBtn.click()
+        timerOut = setTimeout(() => {
+            activerIndex.value = null
+            timerOut = null
+            clearTimeout(timerOut)
+        }, 200)
 
 
-        return
         // e.keyCode 已经弃用
-        const currentKey = e.key
-        const tone = dxToneList.find(x => x.key == currentKey.toUpperCase())
-        if (!tone) {
-            console.error("当前按键无音源..")
-            return
-        }
-        clickControlDX(tone)
+        // const currentKey = e.key
+        // const tone = dxToneList.find(x => x.key == currentKey.toUpperCase())
+        // if (!tone) {
+        //     console.error("当前按键无音源..")
+        //     return
+        // }
+        // clickControlDX(tone)
     })
 
 }
