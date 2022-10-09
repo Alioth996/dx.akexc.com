@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "com.akexc.dx/router"
 
 func main() {
-    fmt.Println("Hello, World!")
+	router.InitRouter()
 }
