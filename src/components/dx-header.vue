@@ -6,7 +6,7 @@
                     <img src="../assets/images/xiao.svg" width="160" alt="洞箫在线" title="洞箫在线">
                 </a>
             </h1>
-            <p text-md>洞箫在线 - 连接热爱民乐的你~~</p>
+            <p text-md>洞箫在线 - 体验民乐的魅力~</p>
 
             <p style="transform: rotate(90deg);">
                 <img src="../assets/images/dizi.svg" width="150" alt="">

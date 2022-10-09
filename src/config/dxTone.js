@@ -1,5 +1,5 @@
-// const toneBaseUrl = '/audio/' // prod
-const toneBaseUrl = '/src/assets/audio/'
+const toneBaseUrl = '/audio/' // prod
+// const toneBaseUrl = '/src/assets/audio/'
 
 // 洞箫G5 音域: 低音5 - 高音6(常见) [G3-A5]  ,-5 - 低音5, 5^ - 高音5
 export default [
