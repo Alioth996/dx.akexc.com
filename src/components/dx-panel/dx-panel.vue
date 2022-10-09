@@ -1,4 +1,5 @@
 <template>
+    <DxPanelTop />
     <div id="dx-panel" flex="~ row " justify-start>
         <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-keyCode="dxTone.keyCode"
             :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
@@ -14,6 +15,7 @@
 <script setup>
 import dxToneList from '@/config/dxTone'
 import { onMounted, ref, computed } from 'vue';
+import DxPanelTop from './dx-panel-top.vue';
 
 
 // 样式切换index
