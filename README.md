@@ -22,17 +22,17 @@
 
 [√] 鼠标演奏
 
-[×] 录制洞箫音源并导入
+[√] 公告
 
 [√] 键盘演奏
+
+[×] 录制洞箫音源
 
 [×] 移动端
 
 [×] 自动演奏
 
 [×] CI / CD
-
-[×] 公告
 
 ---
 
@@ -41,8 +41,6 @@
 ![洞箫在线](src/assets/images/dx.jpg)
 
 ---
-
-
 
 ### 鸣谢
 
@@ -56,7 +54,8 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [AutoPiano](https://www.autopiano.cn/) - web piano 最佳实践
 
-[shuimo-ui](https://github.com/janghood/shuimo-ui) - 国风UI组件库
-+ 受该开源项目启发, 逐渐 get  ``洞箫在线`` 的 idea
+[shuimo-ui](https://github.com/janghood/shuimo-ui) - 国风 UI 组件库
+
+- 受该开源项目启发, 逐渐 get `洞箫在线` 的 idea
 
 [...]()
