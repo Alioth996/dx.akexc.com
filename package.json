@@ -3,6 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "洞箫在线吹奏体验网站",
+  "keywords": [
+    "洞箫",
+    "民乐",
+    "在线乐器",
+    "online"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
