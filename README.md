@@ -66,3 +66,13 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 - 受该开源项目启发, 逐渐 get `洞箫在线` 的 idea
 
 [...]()
+
+### 拓展阅读
+
+民乐方面的虚拟乐器并不多，推荐两款产品
+
+1. AmpleSound - 老牌虚拟乐器厂商，优质音源，极致的真实体验。
+2. 掌上洞箫 - app store 上的产品
+
+最后，如果大家想学习一门乐器，还得物理学习，勤加苦练。
+当然了，我更推荐学笛子或者洞箫，价格相对便宜，便于携带，入门简单。
