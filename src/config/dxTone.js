@@ -1,5 +1,5 @@
 // const toneBaseUrl = '/audio/' // prod
-const toneBaseUrl = '/src/assets/audio/'
+const toneBaseUrl = '/audio/'
 
 const prevFix = 'flute_'
 
