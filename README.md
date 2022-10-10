@@ -36,8 +36,7 @@
 
 [×] P5.js 绘制中国风背景
 
-[×] websocket消息推送
-
+[×] websocket 消息推送
 
 ---
 
@@ -77,7 +76,7 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [掌上洞箫](https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E6%B4%9E%E7%AE%AB-%E4%B8%81%E6%99%93%E9%80%B5%E4%BB%A3%E8%A8%80/id1182217891) - IOS **付费**
 
-[笛子大师](https://apps.apple.com/cn/app/%E7%AC%9B%E5%AD%90%E6%95%99%E7%BB%83/id1505941191) - 安卓 & IOS  **免费**
+[笛子教练](https://apps.apple.com/cn/app/%E7%AC%9B%E5%AD%90%E6%95%99%E7%BB%83/id1505941191) - 安卓 & IOS **免费**
 
 ---
 
