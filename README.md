@@ -65,6 +65,8 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 - 受该开源项目启发, 逐渐 get `洞箫在线` 的 idea
 
+[Vercel](https://vercel.com/) - 提供但不仅限于静态网站托管服务的平台, 前端自动化部署解决方案.
+
 [...]()
 
 ### 拓展阅读
@@ -82,7 +84,5 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 ### 最后
 
 如果大家想学习一门乐器，还得物理学习，勤加苦练.实践才是检验真理的唯一标准.
-
-<br/>
 
 当然了，我更推荐学笛子或者洞箫，价格相对便宜，便于携带，入门简单。
