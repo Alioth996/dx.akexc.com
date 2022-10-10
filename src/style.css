@@ -31,3 +31,41 @@ body {
 main {
   background: url('./assets/images/bg.webp') no-repeat center/cover;
 }
+/* 适配移动端 */
+
+@media (max-width: 375px) {
+  #dx-notice,
+  #dx-header,
+  #dx-footer {
+    display: none;
+  }
+}
+
+@media (min-width: 376px) {
+  #dx-notice,
+  #dx-header,
+  #dx-footer {
+    display: none;
+  }
+}
+@media (min-width: 750px) {
+  #dx-header,
+  #dx-footer {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  #dx-header,
+  #dx-footer {
+    display: block;
+  }
+}
+
+@media (min-width: 1280px) {
+  #dx-notice,
+  #dx-header,
+  #dx-footer {
+    display: block;
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-    <footer text-center py-6 leading-7>
+    <footer text-center py-6 leading-7 id="dx-footer">
         <p text-sm>
             <a href="https://github.com/akex4396/dx.akexc.com" target="_blank" class="text-link">View in Github</a>
         </p>

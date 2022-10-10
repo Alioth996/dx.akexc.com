@@ -1,5 +1,6 @@
 <template>
-    <header flex="~ row none" relative h-200px w-full p-x-6 justify-center style="background: var(--header-bg)">
+    <header id="dx-header" flex="~ row none" relative h-200px w-full p-x-6 justify-center
+        style="background: var(--header-bg)">
         <div flex="~ row gap-16px" justify-center items-center>
             <h1>
                 <a href="#">
