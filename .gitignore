@@ -12,6 +12,7 @@ pkg/*
 dist
 dist-ssr
 *.local
+ogg/*
 
 # Editor directories and files
 .vscode/*
