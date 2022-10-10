@@ -3,7 +3,7 @@
     <div id="dx-panel" flex="~ row " justify-start>
         <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-keyCode="dxTone.keyCode"
             :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
-            @click.stop=" clickControlDX(dxTone,index)" ref="toneBtn">
+            @mousedown.stop=" clickControlDX(dxTone,index)" ref="toneBtn">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
                 <div class="notename">{{dxTone.name}}</div>
@@ -14,14 +14,16 @@
 
 <script setup>
 import dxToneList from '@/config/dxTone'
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref } from 'vue';
 import DxPanelTop from './dx-panel-top.vue';
 
+const toneBtn = ref()
 
 // 样式切换index
 let activerIndex = ref()
 
-let timerOut = null
+let styleTimerOut = null
+let toneTimeOut = null
 let dxAudio = null
 // 鼠标点击演奏
 const clickControlDX = ({ url }, index) => {
@@ -31,26 +33,23 @@ const clickControlDX = ({ url }, index) => {
         dxAudio.src = url
     }
     activerIndex.value = index
-    // 目前来说构造函数时最优解,后期可能会使用 tone.js
+    // 目前来说是最优解,后期可能会使用 tone.js
     dxAudio.addEventListener("canplaythrough", event => {
-        /* 音频可以播放；如果权限允许则播放 */
         dxAudio.volume = 0.5
-        // dxAudio.currentTime = 0
         /**
          * @desc preload 设置预加载
          * 
          * @attr none: 表示不应该预加载视频。
          * @attr metadata: 表示仅预先获取视频的元数据（例如长度）
          * @attr auto: 表示可以下载整个视频文件，即使用户不希望使用它。
-         * 空字符串: 和值为 auto 一致。每个浏览器的默认值都不相同，即使规范建议设置为 metadata。
-         * 
+         * @nil : 和值为 auto 一致。每个浏览器的默认值都不相同，即使规范建议设置为 metadata。
          * @link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video#attr-preload
          */
         dxAudio.play();
-        // timerOut = setTimeout(() => {
-        //     dxAudio.src = ''
-        //     timerOut = null
-        //     clearTimeout(timerOut)
+        // toneTimeOut = setTimeout(() => {
+        //     dxAudio = null
+        //     toneTimeOut = null
+        //     clearTimeout(toneTimeOut)
         // }, 2000)
     });
 
@@ -63,15 +62,15 @@ const clickControlDX = ({ url }, index) => {
     })
 
 
-    timerOut = setTimeout(() => {
+    styleTimerOut = setTimeout(() => {
         activerIndex.value = null
-        timerOut = null
-        clearTimeout(timerOut)
+        styleTimerOut = null
+        clearTimeout(styleTimerOut)
     }, 200)
 }
 
 
-// 音名转换为十二平均律
+
 const filterToneToChinese = (toneName) => {
     if (toneName.startsWith('-')) {
         return toneName = toneName.replace('-', '低音')
@@ -96,16 +95,6 @@ const keypressControlDX = () => {
             timerOut = null
             clearTimeout(timerOut)
         }, 200)
-
-
-        // e.keyCode 已经弃用
-        // const currentKey = e.key
-        // const tone = dxToneList.find(x => x.key == currentKey.toUpperCase())
-        // if (!tone) {
-        //     console.error("当前按键无音源..")
-        //     return
-        // }
-        // clickControlDX(tone)
     })
 
 }
@@ -137,7 +126,6 @@ onMounted(() => keypressControlDX()
         box-shadow: inset 0 0 5px 0 #8c4356;
 
     }
-
 
 }
 
