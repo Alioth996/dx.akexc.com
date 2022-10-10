@@ -22,17 +22,20 @@ import DxPanelTop from './dx-panel-top.vue';
 let activerIndex = ref()
 
 let timerOut = null
-
+let dxAudio = null
 // 鼠标点击演奏
 const clickControlDX = ({ url }, index) => {
+    if (!dxAudio) {
+        dxAudio = new Audio(url)
+    } else {
+        dxAudio.src = url
+    }
     activerIndex.value = index
     // 目前来说构造函数时最优解,后期可能会使用 tone.js
-    const dxAudio = new Audio(url)
-
-    dxAudio.addEventListener("canplay", event => {
+    dxAudio.addEventListener("canplaythrough", event => {
         /* 音频可以播放；如果权限允许则播放 */
         dxAudio.volume = 0.5
-
+        // dxAudio.currentTime = 0
         /**
          * @desc preload 设置预加载
          * 
@@ -43,8 +46,12 @@ const clickControlDX = ({ url }, index) => {
          * 
          * @link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video#attr-preload
          */
-        dxAudio.preload = 'none'
         dxAudio.play();
+        // timerOut = setTimeout(() => {
+        //     dxAudio.src = ''
+        //     timerOut = null
+        //     clearTimeout(timerOut)
+        // }, 2000)
     });
 
     dxAudio.addEventListener('play', e => {
