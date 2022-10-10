@@ -33,25 +33,34 @@ main {
 }
 /* 适配移动端 */
 
+#dx-notice,
+#dx-header,
+#dx-footer {
+  transition: 0.2s;
+}
+
 @media (max-width: 375px) {
   #dx-notice,
   #dx-header,
   #dx-footer {
     display: none;
+    opacity: 0;
   }
 }
 
-@media (min-width: 376px) {
+@media (min-width: 375px) {
   #dx-notice,
   #dx-header,
   #dx-footer {
     display: none;
+    opacity: 0;
   }
 }
 @media (min-width: 750px) {
   #dx-header,
   #dx-footer {
     display: block;
+    opacity: 1;
   }
 }
 
@@ -59,6 +68,7 @@ main {
   #dx-header,
   #dx-footer {
     display: block;
+    opacity: 1;
   }
 }
 
@@ -67,5 +77,6 @@ main {
   #dx-header,
   #dx-footer {
     display: block;
+    opacity: 1;
   }
 }

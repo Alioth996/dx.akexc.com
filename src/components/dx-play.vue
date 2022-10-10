@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import DxPanelTop from './dx-panel/dx-panel-top.vue';
 import DxPanel from './dx-panel/dx-panel.vue';
-import DxNotice from './dx-notice.vue';</script>
+
+</script>
 
 <style scoped>
 #dx-play {
