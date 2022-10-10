@@ -90,10 +90,10 @@ const keypressControlDX = () => {
 
         if (!currentBtn) return
         currentBtn.click()
-        timerOut = setTimeout(() => {
+        styleTimerOut = setTimeout(() => {
             activerIndex.value = null
-            timerOut = null
-            clearTimeout(timerOut)
+            styleTimerOut = null
+            clearTimeout(styleTimerOut)
         }, 200)
     })
 
