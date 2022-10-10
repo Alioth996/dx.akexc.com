@@ -1,5 +1,5 @@
 <template>
-    <div id="dx-notice" w-100 flex="~ col none" gap-4 justify-center items-center>
+    <div id="dx-notice" w-100>
         <m-button>开发公告</m-button>
         <m-table :data="todoList" h-full>
             <m-table-column width="80px" param="id" label="序号" />
@@ -25,7 +25,7 @@ const todoList = ref([
     { id: 2, todo: '公告看板', state: 1 },
     { id: 3, todo: '洞箫音源录制', state: 1 },
     { id: 4, todo: '自动演奏', state: 0 },
-    { id: 5, todo: '移动端适配', state: 0 },
+    { id: 5, todo: '移动端适配', state: 1 },
 
 ]);
 
@@ -36,7 +36,12 @@ const todoList = ref([
     position: fixed;
     top: 50%;
     left: 10ch;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     transform: translateY(-50%);
+    justify-content: center;
+    align-items: center;
 
     &::-webkit-scrollbar {
         display: none;
