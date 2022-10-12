@@ -66,11 +66,17 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [Vercel](https://vercel.com/) - 提供但不仅限于静态网站托管服务的平台, 前端自动化部署解决方案.
 
+[爱给网](https://www.aigei.com/tool/audio) - 在线音频剪辑平台
+
 [...]()
+
+以及感谢我大学 [广东科学技术职业学院-校器乐队](https://www.gdit.edu.cn)的师兄 师姐,感谢他们在 [竹笛](), [洞箫](),[乐理]() 方面的指点与教导.
+
+---
 
 ### 拓展阅读
 
-民乐方面的虚拟乐器并不多，推荐三款产品
+[民乐]() 方面的 [虚拟乐器]() 并不多，推荐三款产品
 
 [AmpleSound](https://www.amplesound.net/) - 老牌虚拟乐器厂商，优质音源，极致的真实体验, 专业性, **付费**
 
@@ -84,4 +90,4 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 如果大家想学习一门乐器，还得物理学习，勤加苦练.实践才是检验真理的唯一标准.
 
-当然了，我更推荐学笛子或者洞箫，价格相对便宜，便于携带，入门简单。
+当然了，我更推荐学 [笛子]() 或者 [洞箫]()，价格相对便宜，便于携带，入门简单。
