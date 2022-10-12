@@ -23,10 +23,11 @@ import { ref } from 'vue'
 const todoList = ref([
     { id: 1, todo: '基本功能', state: 1 },
     { id: 2, todo: '公告看板', state: 1 },
-    { id: 3, todo: '竹笛音源导入', state: 1 },
-    { id: 4, todo: '自动演奏', state: 0 },
-    { id: 5, todo: '移动端适配', state: 1 },
-    { id: 6, todo: 'websocket', state: 0 },
+    { id: 3, todo: '竹笛音源录制', state: 1 },
+    { id: 4, todo: '移动端适配', state: 1 },
+    { id: 5, todo: '网站icon', state: 1 },
+    { id: 6, todo: '自动演奏', state: 0 },
+    { id: 7, todo: 'websocket', state: 0 },
 
 ]);
 
@@ -36,7 +37,7 @@ const todoList = ref([
 #dx-notice {
     position: fixed;
     top: 50%;
-    left: 10ch;
+    left: 5ch;
     display: flex;
     flex-direction: column;
     gap: 16px;
