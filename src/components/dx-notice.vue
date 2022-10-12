@@ -26,6 +26,7 @@ const todoList = ref([
     { id: 3, todo: '竹笛音源导入', state: 1 },
     { id: 4, todo: '自动演奏', state: 0 },
     { id: 5, todo: '移动端适配', state: 1 },
+    { id: 6, todo: 'websocket', state: 0 },
 
 ]);
 
