@@ -81,6 +81,8 @@ const filterToneToChinese = (toneName) => {
  * @time 2022/10/12
  */
 const keypadPlay = () => {
+    const dxToneBtnList = [...document.querySelector('#dx-panel').children]
+
     keyupPlayHandler = (e) => {
         currentPlayAudio = dxToneBtnList.filter(x => x.getAttribute('data-key') == e.key.toUpperCase())[0]
 
@@ -99,13 +101,8 @@ const keypadPlay = () => {
 
     }
 
-    const dxToneBtnList = [...document.querySelector('#dx-panel').children]
-
-
     // 键盘按下播放
     document.addEventListener('keyup', keyupPlayHandler)
-
-
 
 }
 
@@ -150,7 +147,7 @@ onUnmounted(() => {
 }
 
 .active {
-    box-shadow: inset 0 0 5px 0 #000;
+    box-shadow: inset 0 0 5px 0 #000 !important;
 
 }
 
