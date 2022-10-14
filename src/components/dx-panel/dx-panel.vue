@@ -1,9 +1,9 @@
 <template>
     <DxPanelTop />
     <div id="dx-panel" flex="~ row " justify-start>
-        <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-keyCode="dxTone.keyCode"
+        <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-key="dxTone.key"
             :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
-            @mousedown.stop=" clickControlDX(dxTone,index)" ref="toneBtn">
+            @click=" clickControlDX(dxTone,index)">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
                 <div class="notename">{{dxTone.name}}</div>
@@ -17,13 +17,16 @@ import dxToneList from '@/config/dxTone'
 import { onMounted, ref } from 'vue';
 import DxPanelTop from './dx-panel-top.vue';
 
-const toneBtn = ref()
-
 // 样式切换index
 let activerIndex = ref()
 
 let styleTimerOut = null
+
+// audio播放器实例
 let dxAudio = null
+
+// 当前播放的audio
+let currentPlayAudio = null
 
 // 鼠标点击演奏
 const clickControlDX = ({ url }, index) => {
@@ -77,20 +80,17 @@ const filterToneToChinese = (toneName) => {
 const keypressControlDX = () => {
     const dxToneBtnList = [...document.querySelector('#dx-panel').children]
 
-    // 1. keypress 按住不放会一直触发事件, keyup需要松开键盘才触发. 
-    // 2.考虑使用键盘驱动点击事件模拟效果
+
+    // 键盘按下播放
     document.addEventListener('keyup', e => {
-        const currentBtn = dxToneBtnList.filter(x => x.getAttribute('data-keycode') == e.keyCode)[0]
-        console.log(currentBtn);
+        currentPlayAudio = dxToneBtnList.filter(x => x.getAttribute('data-key') == e.key.toUpperCase())[0]
 
         // js 模拟鼠标事件
-        const autoMouseEvent = document.createEvent("MouseEvents");
-        autoMouseEvent.initMouseEvent("mousedown", true, true);
-        currentBtn.dispatchEvent(autoMouseEvent)
+        if (!currentPlayAudio) return
+        const autoPlayEvent = new Event("click")
 
-
-        // if (!currentBtn) return
-
+        // 自动触发事件
+        currentPlayAudio.dispatchEvent(autoPlayEvent)
 
         styleTimerOut = setTimeout(() => {
             activerIndex.value = null
@@ -99,9 +99,13 @@ const keypressControlDX = () => {
         }, 200)
     })
 
+
 }
 
-onMounted(() => keypressControlDX()
+
+onMounted(() => {
+    keypressControlDX()
+}
 )
 
 </script>
