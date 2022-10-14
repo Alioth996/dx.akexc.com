@@ -3,7 +3,7 @@
     <div id="dx-panel" flex="~ row " justify-start>
         <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-key="dxTone.key"
             :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
-            @click=" clickControlDX(dxTone,index)">
+            @click=" clickPlay(dxTone,index)">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
                 <div class="notename">{{dxTone.name}}</div>
@@ -14,7 +14,7 @@
 
 <script setup>
 import dxToneList from '@/config/dxTone'
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import DxPanelTop from './dx-panel-top.vue';
 
 // 样式切换index
@@ -28,8 +28,11 @@ let dxAudio = null
 // 当前播放的audio
 let currentPlayAudio = null
 
+// 全局键盘事件处理函数
+let keyupPlayHandler = null
+
 // 鼠标点击演奏
-const clickControlDX = ({ url }, index) => {
+const clickPlay = ({ url }, index) => {
     if (!dxAudio) {
         dxAudio = new Audio(url)
     } else {
@@ -77,12 +80,8 @@ const filterToneToChinese = (toneName) => {
  * @desc 键盘演奏
  * @time 2022/10/12
  */
-const keypressControlDX = () => {
-    const dxToneBtnList = [...document.querySelector('#dx-panel').children]
-
-
-    // 键盘按下播放
-    document.addEventListener('keyup', e => {
+const keypadPlay = () => {
+    keyupPlayHandler = (e) => {
         currentPlayAudio = dxToneBtnList.filter(x => x.getAttribute('data-key') == e.key.toUpperCase())[0]
 
         // js 模拟鼠标事件
@@ -97,16 +96,31 @@ const keypressControlDX = () => {
             styleTimerOut = null
             clearTimeout(styleTimerOut)
         }, 200)
-    })
+
+    }
+
+    const dxToneBtnList = [...document.querySelector('#dx-panel').children]
+
+
+    // 键盘按下播放
+    document.addEventListener('keyup', keyupPlayHandler)
+
 
 
 }
+
+
 
 
 onMounted(() => {
-    keypressControlDX()
+    keypadPlay()
 }
 )
+
+onUnmounted(() => {
+    document.removeEventListener('keyup', keyupPlayHandler)
+    clearTimeout(styleTimerOut)
+})
 
 </script>
 
