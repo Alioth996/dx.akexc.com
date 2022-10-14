@@ -23,8 +23,8 @@ const toneBtn = ref()
 let activerIndex = ref()
 
 let styleTimerOut = null
-let toneTimeOut = null
 let dxAudio = null
+
 // 鼠标点击演奏
 const clickControlDX = ({ url }, index) => {
     if (!dxAudio) {
@@ -36,21 +36,7 @@ const clickControlDX = ({ url }, index) => {
     // 目前来说是最优解,后期可能会使用 tone.js
     dxAudio.addEventListener("canplaythrough", event => {
         dxAudio.volume = 0.5
-        /**
-         * @desc preload 设置预加载
-         * 
-         * @attr none: 表示不应该预加载视频。
-         * @attr metadata: 表示仅预先获取视频的元数据（例如长度）
-         * @attr auto: 表示可以下载整个视频文件，即使用户不希望使用它。
-         * @nil : 和值为 auto 一致。每个浏览器的默认值都不相同，即使规范建议设置为 metadata。
-         * @link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video#attr-preload
-         */
         dxAudio.play();
-        // toneTimeOut = setTimeout(() => {
-        //     dxAudio = null
-        //     toneTimeOut = null
-        //     clearTimeout(toneTimeOut)
-        // }, 2000)
     });
 
     dxAudio.addEventListener('play', e => {
@@ -70,7 +56,11 @@ const clickControlDX = ({ url }, index) => {
 }
 
 
-
+/**
+ * @desc 解析简谱成中文格式
+ * @param {*string } toneName 
+ * @return {*string } toneName
+ */
 const filterToneToChinese = (toneName) => {
     if (toneName.startsWith('-')) {
         return toneName = toneName.replace('-', '低音')
@@ -80,6 +70,10 @@ const filterToneToChinese = (toneName) => {
     return `中音${toneName}`
 }
 
+/**
+ * @desc 键盘演奏
+ * @time 2022/10/12
+ */
 const keypressControlDX = () => {
     const dxToneBtnList = [...document.querySelector('#dx-panel').children]
 
@@ -87,9 +81,17 @@ const keypressControlDX = () => {
     // 2.考虑使用键盘驱动点击事件模拟效果
     document.addEventListener('keyup', e => {
         const currentBtn = dxToneBtnList.filter(x => x.getAttribute('data-keycode') == e.keyCode)[0]
+        console.log(currentBtn);
 
-        if (!currentBtn) return
-        currentBtn.click()
+        // js 模拟鼠标事件
+        const autoMouseEvent = document.createEvent("MouseEvents");
+        autoMouseEvent.initMouseEvent("mousedown", true, true);
+        currentBtn.dispatchEvent(autoMouseEvent)
+
+
+        // if (!currentBtn) return
+
+
         styleTimerOut = setTimeout(() => {
             activerIndex.value = null
             styleTimerOut = null
