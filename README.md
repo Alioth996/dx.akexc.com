@@ -62,11 +62,13 @@ Face open source!! I just a coding Beginner but Standing On The Shoulder Of Gian
 
 [shuimo-ui](https://github.com/janghood/shuimo-ui) - 国风 UI 组件库
 
-- 受该开源项目启发, 逐渐 get `洞箫在线` 的 idea
+- 受该开源项目启发, get `洞箫在线` 的 idea
 
 [Vercel](https://vercel.com/) - 提供但不仅限于静态网站托管服务的平台, 前端自动化部署解决方案.
 
 [爱给网](https://www.aigei.com/tool/audio) - 在线音频剪辑平台
+
+[iconfont](https://www.iconfont.cn/) - 阿里巴巴矢量图标库
 
 [...]()
 
