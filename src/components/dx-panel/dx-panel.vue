@@ -1,6 +1,6 @@
 <template>
     <DxPanelTop />
-    <div id="dx-panel" flex="~ row " justify-start>
+    <div id="dx-panel" flex="~ row " justify-start ref="keypadElRef">
         <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-key="dxTone.key"
             :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
             @click=" clickPlay(dxTone,index)">
@@ -31,6 +31,10 @@ let currentPlayAudio = null
 // 全局键盘事件处理函数
 let keyupPlayHandler = null
 
+// 键盘父元素
+
+const keypadElRef = $ref()
+
 // 鼠标点击演奏
 const clickPlay = ({ url }, index) => {
     if (!dxAudio) {
@@ -38,10 +42,10 @@ const clickPlay = ({ url }, index) => {
     } else {
         dxAudio.src = url
     }
+    dxAudio.volume = 0.5
     activerIndex.value = index
     // 目前来说是最优解,后期可能会使用 tone.js
     dxAudio.addEventListener("canplaythrough", event => {
-        dxAudio.volume = 0.5
         dxAudio.play();
     });
 
@@ -81,7 +85,7 @@ const filterToneToChinese = (toneName) => {
  * @time 2022/10/12
  */
 const keypadPlay = () => {
-    const dxToneBtnList = [...document.querySelector('#dx-panel').children]
+    const dxToneBtnList = [...keypadElRef.children]
 
     keyupPlayHandler = (e) => {
         currentPlayAudio = dxToneBtnList.filter(x => x.getAttribute('data-key') == e.key.toUpperCase())[0]
