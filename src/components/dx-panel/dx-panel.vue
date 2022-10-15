@@ -3,12 +3,18 @@
     <div id="dx-panel" flex="~ row " justify-start ref="keypadElRef">
         <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-key="dxTone.key"
             :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
-            @click=" clickPlay(dxTone,index)">
+            @click="newClickPlay(index)">
             <div class="keytip">
                 <div class="keyname">{{dxTone.key}}</div>
                 <div class="notename">{{dxTone.name}}</div>
             </div>
         </div>
+    </div>
+
+    <div ref="audiosRef" v-show="false">
+        <audio v-for="item in dxToneList" preload="auto" :src="item.url" :key="item.id" :data-id="item.id"
+            :data-name="filterToneToChinese(item.name)"></audio>
+
     </div>
 </template>
 
@@ -32,37 +38,74 @@ let currentPlayAudio = null
 let keyupPlayHandler = null
 
 // 键盘父元素
-
 const keypadElRef = $ref()
 
+// audio父元素
+const audiosRef = $ref()
+
+// audioList
+let audioList = null
+
 // 鼠标点击演奏
-const clickPlay = ({ url }, index) => {
-    if (!dxAudio) {
-        dxAudio = new Audio(url)
-    } else {
-        dxAudio.src = url
-    }
-    dxAudio.volume = 0.5
+// const clickPlay = ({ url }, index) => {
+//     if (!dxAudio) {
+//         dxAudio = new Audio(url)
+//     } else {
+//         dxAudio.src = url
+//     }
+//     dxAudio.volume = 0.5
+//     activerIndex.value = index
+//     // 目前来说是最优解,后期可能会使用 tone.js
+//     dxAudio.addEventListener("canplaythrough", event => {
+//         dxAudio.play();
+//     });
+
+//     dxAudio.addEventListener('play', e => {
+//         console.log("洞箫吹奏中...", dxAudio.played);
+//     })
+
+//     dxAudio.addEventListener('ended', (e) => {
+//         console.log("洞箫吹奏结束:", dxAudio.ended);
+//     })
+
+
+//     styleTimerOut = setTimeout(() => {
+//         activerIndex.value = null
+//         styleTimerOut = null
+//         clearTimeout(styleTimerOut)
+//     }, 200)
+// }
+
+
+/**
+ * @desc 新点击演奏
+ * @param {*number} index 
+ */
+const newClickPlay = (index) => {
     activerIndex.value = index
-    // 目前来说是最优解,后期可能会使用 tone.js
-    dxAudio.addEventListener("canplaythrough", event => {
-        dxAudio.play();
-    });
+    // 排他思想
+    audioList.map(x => x.pause())
 
-    dxAudio.addEventListener('play', e => {
-        console.log("洞箫吹奏中...", dxAudio.played);
+    currentPlayAudio = audioList[index]
+    currentPlayAudio.currentTime = 0
+    currentPlayAudio.play()
+
+
+    currentPlayAudio.addEventListener('play', e => {
+        console.log("洞箫吹奏中...", currentPlayAudio.played);
     })
 
-    dxAudio.addEventListener('ended', (e) => {
-        console.log("洞箫吹奏结束:", dxAudio.ended);
+    currentPlayAudio.addEventListener('ended', (e) => {
+        console.log("洞箫吹奏结束:", currentPlayAudio.ended);
     })
-
 
     styleTimerOut = setTimeout(() => {
         activerIndex.value = null
         styleTimerOut = null
         clearTimeout(styleTimerOut)
     }, 200)
+
+
 }
 
 
@@ -111,9 +154,8 @@ const keypadPlay = () => {
 }
 
 
-
-
 onMounted(() => {
+    audioList = [...audiosRef.children]
     keypadPlay()
 }
 )
