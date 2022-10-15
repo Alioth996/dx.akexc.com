@@ -79,6 +79,8 @@ let audioList = null
 
 /**
  * @desc 新点击演奏
+ * @timer 2022-10-15
+ * @authot akex4396
  * @param {*number} index 
  */
 const newClickPlay = (index) => {
