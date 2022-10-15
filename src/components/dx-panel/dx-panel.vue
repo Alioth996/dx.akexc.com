@@ -85,12 +85,17 @@ let audioList = null
  */
 const newClickPlay = (index) => {
     activerIndex.value = index
-    // 排他思想
-    audioList.map(x => x.pause())
-
     currentPlayAudio = audioList[index]
+
+
+    audioList.forEach(x => x.pause())
     currentPlayAudio.currentTime = 0
     currentPlayAudio.play()
+
+
+
+
+
 
 
     currentPlayAudio.addEventListener('play', e => {
