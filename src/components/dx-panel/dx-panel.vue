@@ -29,7 +29,7 @@ let activerIndex = ref()
 let styleTimerOut = null
 
 // audio播放器实例
-let dxAudio = null
+// let dxAudio = null
 
 // 当前播放的audio
 let currentPlayAudio = null
@@ -45,6 +45,9 @@ const audiosRef = $ref()
 
 // audioList
 let audioList = null
+
+// 记录所有已演奏的音的索引
+const toneIndexList = []
 
 // 鼠标点击演奏
 // const clickPlay = ({ url }, index) => {
@@ -84,18 +87,23 @@ let audioList = null
  * @param {*number} index 
  */
 const newClickPlay = (index) => {
+    // 第一次演奏
+    if (toneIndexList.length < 1) {
+        toneIndexList.push(index)
+    } else {
+        // 取上一次演奏的audio索引
+        const prevIndex = toneIndexList.pop()
+        audioList[prevIndex].pause()
+        toneIndexList.push(index)
+    }
+
     activerIndex.value = index
     currentPlayAudio = audioList[index]
 
-
-    audioList.forEach(x => x.pause())
+    // 这种方式太浪费性能了,只需要操作一个元素,却需要遍历所有的元素,开销过大
+    // audioList.forEach(x => x.pause())
     currentPlayAudio.currentTime = 0
     currentPlayAudio.play()
-
-
-
-
-
 
 
     currentPlayAudio.addEventListener('play', e => {
@@ -111,8 +119,6 @@ const newClickPlay = (index) => {
         styleTimerOut = null
         clearTimeout(styleTimerOut)
     }, 200)
-
-
 }
 
 
@@ -135,16 +141,16 @@ const filterToneToChinese = (toneName) => {
  * @time 2022/10/12
  */
 const keypadPlay = () => {
-    const dxToneBtnList = [...keypadElRef.children]
+    // const dxToneBtnList = [...keypadElRef.children]
 
     keyupPlayHandler = (e) => {
-        currentPlayAudio = dxToneBtnList.filter(x => x.getAttribute('data-key') == e.key.toUpperCase())[0]
+        // currentPlayAudio = dxToneBtnList.filter(x => x.getAttribute('data-key') == e.key.toUpperCase())[0]
+        currentPlayAudio = document.querySelector(`[data-key=${e.key.toUpperCase()}]`)
 
         // js 模拟鼠标事件
         if (!currentPlayAudio) return
         const autoPlayEvent = new Event("click")
 
-        // 自动触发事件
         currentPlayAudio.dispatchEvent(autoPlayEvent)
 
         styleTimerOut = setTimeout(() => {
