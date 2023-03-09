@@ -1,12 +1,12 @@
 <template>
     <DxPanelTop />
     <div id="dx-panel" flex="~ row " justify-start ref="keypadElRef">
-        <div v-for="(dxTone,index) in dxToneList" :key="dxTone.id" :data-key="dxTone.key"
-            :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ?'active':''"
+        <div v-for="(dxTone, index) in dxToneList" :key="dxTone.id" :data-key="dxTone.key"
+            :data-name="filterToneToChinese(dxTone.name)" class="dxTone-key" :class="activerIndex == index ? 'active' : ''"
             @click="newClickPlay(index)">
             <div class="keytip">
-                <div class="keyname">{{dxTone.key}}</div>
-                <div class="notename">{{dxTone.name}}</div>
+                <div class="keyname">{{ dxTone.key }}</div>
+                <div class="notename">{{ dxTone.name }}</div>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@ const toneIndexList = []
 /**
  * @desc 新点击演奏
  * @timer 2022-10-15
- * @authot akex4396
+ * @author akex4396
  * @param {*number} index 
  */
 const newClickPlay = (index) => {

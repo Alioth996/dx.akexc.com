@@ -4,11 +4,6 @@
         <p>G5</p>
     </div>
 </template>
-
-<script setup>
-
-</script>
-
 <style scoped lang='less'>
 .dx-panel-top {
     justify-content: center;

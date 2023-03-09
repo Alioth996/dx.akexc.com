@@ -6,7 +6,6 @@
 
 <script setup>
 import DxPanel from './dx-panel/dx-panel.vue';
-
 </script>
 
 <style scoped>
