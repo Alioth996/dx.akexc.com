@@ -13,7 +13,7 @@
     <DxFooter />
 
     <!-- 提示用户横屏设备 -->
-    <m-dialog :visible="visible">
+    <m-dialog @close="closeDialog" :visible="visible">
       <span>手机/设备横向显示效果更佳哦~</span>
     </m-dialog>
 
@@ -28,8 +28,7 @@ import DxNotice from './components/dx-notice.vue';
 
 import { useDialog } from "shuimo-ui";
 
-const { visible, showDialog } = useDialog();
-
+const { visible, showDialog, closeDialog } = useDialog();
 
 
 /**
